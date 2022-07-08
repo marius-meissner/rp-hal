@@ -216,7 +216,7 @@ impl<T: Deref<Target = Block>, PINS> I2C<T, PINS, Controller> {
             // shift register has completed. For this to function correctly, the
             // TX_EMPTY_CTRL flag in IC_CON must be set. The TX_EMPTY_CTRL flag
             // was set in i2c_init.
-            while self.i2c.ic_raw_intr_stat.read().tx_empty().is_inactive() {}
+            // while self.i2c.ic_raw_intr_staet.read().tx_empty().is_inactive() {}
 
             let abort_reason = self.read_and_clear_abort_reason();
 
@@ -224,7 +224,7 @@ impl<T: Deref<Target = Block>, PINS> I2C<T, PINS, Controller> {
                 // If the transaction was aborted or if it completed
                 // successfully wait until the STOP condition has occured.
 
-                while self.i2c.ic_raw_intr_stat.read().stop_det().is_inactive() {}
+                // while self.i2c.ic_raw_intr_stat.read().stop_det().is_inactive() {}
 
                 self.i2c.ic_clr_stop_det.read().clr_stop_det();
             }
